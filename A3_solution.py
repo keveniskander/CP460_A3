@@ -60,8 +60,6 @@ def get_freq(text,base = None):
     
     assert type(text) == str
     
-    
-
     if base == None:
 
         alpha = utilities.get_base('lower')
@@ -95,7 +93,24 @@ Asserts:      text is a string
 ----------------------------------------------------
 """
 def index_of_coin(text,base_type = None):
-    # your solution here
+    
+    assert type(text) == str
+
+    if len(text) == 0:
+        return 0.0
+
+    I = 0.0
+    freq = get_freq(text, base_type)
+    freq_sum = sum(freq)
+    if freq_sum == 0:
+        return 0.0
+    it_freq_sum = 0.0
+
+    for i in range(len(freq)):
+        it_freq_sum += (freq[i]*(freq[i]-1))
+    I = 1/(freq_sum*(freq_sum-1))
+    I *= it_freq_sum
+    
     return I
 
 """

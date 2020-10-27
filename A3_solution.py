@@ -131,7 +131,22 @@ def chi_squared(text,language='English'):
     
     assert type(text) == str
 
-    
+    result = 0.0
+    get_lang_freq = utilities.get_language_freq(language)
+    get_text_freq = get_freq(text, base=None)
+    # print(get_text_freq)
+
+    if get_lang_freq == []:
+        print('Error(chi_squared): unsupported language')
+        return -1
+
+    if len(text) == 0:
+        return -1
+
+    for i in range(len(get_text_freq)):
+        Ci = get_text_freq[i]
+        Ei = get_lang_freq[i] * sum(get_text_freq)
+        result += ((Ci-Ei)**2)/Ei
     return result
 
 """

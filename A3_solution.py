@@ -110,7 +110,7 @@ def index_of_coin(text,base_type = None):
         it_freq_sum += (freq[i]*(freq[i]-1))
     I = 1/(freq_sum*(freq_sum-1))
     I *= it_freq_sum
-    
+
     return I
 
 """
@@ -128,7 +128,10 @@ Errors:        if language is unsupported:
 ----------------------------------------------------
 """
 def chi_squared(text,language='English'):
-    # your solution here
+    
+    assert type(text) == str
+
+    
     return result
 
 """

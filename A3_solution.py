@@ -165,7 +165,13 @@ Description:  Constructs Vigenere square as list of strings
 ----------------------------------------------------
 """
 def _vigenere_square():
-    # your solution here
+    
+    v_square = []
+    c_element = utilities.get_base('lower')
+    for i in range(len(c_element)):
+        v_square.append(c_element)
+        c_element = utilities.shift_string(c_element,1,direction='l')
+
     return v_square
 
 """

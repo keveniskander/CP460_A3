@@ -1,0 +1,663 @@
+----------------------------------------
+Start of Task 1: Utilities Testing
+
+-------------- Testing Compare Texts:
+Result1 = 44
+Result2 = 134
+Result3 = 34
+Result4 = 1914
+
+-------------- Testing get_freq:
+Base = None
+[122, 33, 37, 71, 171, 40, 38, 91, 92, 2, 10, 54, 45, 125, 129, 21, 2, 97, 92, 128, 49, 7, 37, 1, 29, 1]
+
+Base = lower
+[122, 33, 34, 70, 170, 40, 36, 90, 90, 2, 10, 51, 44, 124, 129, 21, 2, 97, 90, 126, 49, 7, 36, 1, 29, 1]
+
+Base = upper
+[0, 0, 3, 1, 1, 0, 2, 1, 2, 0, 0, 3, 1, 1, 0, 0, 0, 0, 2, 2, 0, 0, 1, 0, 0, 0]
+
+Base = nonalpha
+[0, 4, 0, 0, 0, 0, 3, 0, 0, 0, 0, 28, 4, 4, 0, 1, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+Base = special
+[0, 4, 0, 0, 0, 0, 3, 0, 0, 0, 0, 28, 4, 4, 0, 1, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+-------------- Testing index_of_coin:
+I(plaintext1.txt,None) = 	0.06315
+I(plaintext2.txt,None) = 	0.06476
+I(ciphertext1.txt,None) = 	0.04566
+I(random_text.txt,None) = 	0.03849
+I(lorem ipsum.txt,None) = 	0.07249
+I(ciphertext2.txt,None) = 	0.04276
+I(empty_file.txt,None) = 	0.00000
+
+I(plaintext1.txt,lower) = 	0.06352
+I(plaintext2.txt,alpha) = 	0.06345
+I(ciphertext1.txt,alpha) = 	0.04566
+I(random_text.txt,upper) = 	0.00000
+I(lorem ipsum.txt,all) = 	0.06407
+
+-------------- Testing chi_squared:
+chi_squared(plaintext1.txt) = 	33.096
+chi_squared(plaintext2.txt) = 	19.567
+chi_squared(ciphertext1.txt) = 	985.548
+chi_squared(random_text.txt) = 	46329.144
+chi_squared(lorem ipsum.txt) = 	2909.092
+chi_squared(empty_file.txt) = 	-1.000
+
+End of Task 1: Utilities Testing
+----------------------------------------
+
+----------------------------------------
+Start of Task 2: Vigenere Cipher Testing
+
+-------------- Testing Vigenere Square:
+Vigenere Square = 
+abcdefghijklmnopqrstuvwxyz
+bcdefghijklmnopqrstuvwxyza
+cdefghijklmnopqrstuvwxyzab
+defghijklmnopqrstuvwxyzabc
+efghijklmnopqrstuvwxyzabcd
+fghijklmnopqrstuvwxyzabcde
+ghijklmnopqrstuvwxyzabcdef
+hijklmnopqrstuvwxyzabcdefg
+ijklmnopqrstuvwxyzabcdefgh
+jklmnopqrstuvwxyzabcdefghi
+klmnopqrstuvwxyzabcdefghij
+lmnopqrstuvwxyzabcdefghijk
+mnopqrstuvwxyzabcdefghijkl
+nopqrstuvwxyzabcdefghijklm
+opqrstuvwxyzabcdefghijklmn
+pqrstuvwxyzabcdefghijklmno
+qrstuvwxyzabcdefghijklmnop
+rstuvwxyzabcdefghijklmnopq
+stuvwxyzabcdefghijklmnopqr
+tuvwxyzabcdefghijklmnopqrs
+uvwxyzabcdefghijklmnopqrst
+vwxyzabcdefghijklmnopqrstu
+wxyzabcdefghijklmnopqrstuv
+xyzabcdefghijklmnopqrstuvw
+yzabcdefghijklmnopqrstuvwx
+zabcdefghijklmnopqrstuvwxy
+
+-------------- Testing Vigenere Cipher (Autokey):
+key = R
+plaintext  = In England, there was scarcely an amount of order and protection
+ciphertext = Zv Rrtrlnq, walvv aws kucrtgpj yn nmaihg ht tfuhv rnq sgfhxgvbwb
+plaintext2 = In England, there was scarcely an amount of order and protection
+Validated
+
+key = i
+plaintext  = In England, there was scarcely an amount of order and protection
+ciphertext = Qv Rrtrlnq, walvv aws kucrtgpj yn nmaihg ht tfuhv rnq sgfhxgvbwb
+plaintext2 = In England, there was scarcely an amount of order and protection
+Validated
+
+key = A
+plaintext  = In England, there was scarcely an amount of order and protection
+ciphertext = Iv Rrtrlnq, walvv aws kucrtgpj yn nmaihg ht tfuhv rnq sgfhxgvbwb
+plaintext2 = In England, there was scarcely an amount of order and protection
+Validated
+
+key = 
+plaintext  = In England, there was scarcely an amount of order and protection
+Error(e_vigenere): invalid key
+ciphertext = 
+Error(d_vigenere): invalid key
+plaintext2 = 
+Validation Failed
+
+
+-------------- Testing Vigenere Cipher (Running Key):
+key = Russia
+plaintext  = The story was very pretty and interesting
+ciphertext = Kbw kbois osa vvlq hzeknq svd zhlwzejnafo
+plaintext2 = The story was very pretty and interesting
+Validated
+
+key = Somalia
+plaintext  = The story was very pretty and interesting
+ciphertext = Lvq sewrq kms gmrq ddeeby sbp iybejsettvg
+plaintext2 = The story was very pretty and interesting
+Validated
+
+key = AA
+plaintext  = The story was very pretty and interesting
+ciphertext = The story was very pretty and interesting
+plaintext2 = The story was very pretty and interesting
+Validated
+
+key = 
+plaintext  = The story was very pretty and interesting
+Error(e_vigenere): invalid key
+ciphertext = 
+Error(d_vigenere): invalid key
+plaintext2 = 
+Validation Failed
+
+
+End of Task 2: Vigenere Cipher Testing
+----------------------------------------
+
+----------------------------------------
+Start of Task 3: Shift Cipher Testing
+
+-------------- Testing Encryption/Decryption:
+key = (3, 'abcdefghijklmnopqrstuvwxyz')
+plaintext = Daring burglaries by armed men, and highway robberies, took place in the capital
+ciphertext= Ddulqj exujodulhv eb duphg phq, dqg kljkzdb ureehulhv, wrrn sodfh lq wkh fdslwdo
+plaintext2= Daring burglaries by armed men, and highway robberies, took place in the capital
+Validated
+
+key = (35, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+plaintext = Daring burglaries by armed men, and highway robberies, took place in the capital
+ciphertext= Maring burglaries by armed men, and highway robberies, took place in the capital
+plaintext2= Daring burglaries by armed men, and highway robberies, took place in the capital
+Validated
+
+key = (-3, 'abcdefghijklmnopqrstuvwxyz')
+plaintext = Daring burglaries by armed men, and highway robberies, took place in the capital
+ciphertext= Dxofkd yrodixofbp yv xojba jbk, xka efdetxv olyybofbp, qllh mixzb fk qeb zxmfqxi
+plaintext2= Daring burglaries by armed men, and highway robberies, took place in the capital
+Validated
+
+key = (14, None)
+plaintext = Daring burglaries by armed men, and highway robberies, took place in the capital
+ciphertext= Rofwbu pifuzofwsg pm ofasr asb, obr vwuvkom fcppsfwsg, hccy dzoqs wb hvs qodwhoz
+plaintext2= Daring burglaries by armed men, and highway robberies, took place in the capital
+Validated
+
+key = (31, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')
+plaintext = Daring burglaries by armed men, and highway robberies, took place in the capital
+ciphertext= i5MDIB 6PMBG5MD9N 6T 5MH98 H9I, 5I8 CDBCR5T MJ669MD9N, OJJF KG579 DI OC9 75KDO5G
+plaintext2= Daring burglaries by armed men, and highway robberies, took place in the capital
+Validated
+
+key = (11, 'cr')
+plaintext = Daring burglaries by armed men, and highway robberies, took place in the capital
+ciphertext= Dacing bucglacies by acmed men, and highway cobbecies, took plare in the rapital
+plaintext2= Daring burglaries by armed men, and highway robberies, took place in the capital
+Validated
+
+Error(e_shift): invalid key
+Error(d_shift): invalid key
+Error(e_shift): invalid key
+Error(d_shift): invalid key
+Error(e_shift): invalid key
+Error(d_shift): invalid key
+Error(e_shift): invalid key
+Error(d_shift): invalid key
+Error(e_shift): invalid key
+Error(d_shift): invalid key
+Error(e_shift): invalid key
+Error(d_shift): invalid key
+
+-------------- Testing Cryptanalysis:
+ciphertext = Lq Hqjodqg, wkhuh zdv vfdufhob dq dprxqw ri rughu dqg surwhfwlrq wr mxvwlib pxfk qdwlrqdo erdvwlqj. 
+Cryptanalysis results: key = 3
+plaintext2 = In England, there was scarcely an amount of order and protection to justify much national boasting. 
+
+ciphertext = Ze Vexcreu, kyviv nrj jtritvcp re rdflek fw fiuvi reu gifkvtkzfe kf aljkzwp dlty erkzferc sfrjkzex. 
+Cryptanalysis results: key = 17
+plaintext2 = In England, there was scarcely an amount of order and protection to justify much national boasting. 
+
+ciphertext = Fk Bkdixka, qebob txp pzxozbiv xk xjlrkq lc loabo xka molqbzqflk ql grpqfcv jrze kxqflkxi ylxpqfkd. 
+Cryptanalysis results: key = 23
+plaintext2 = In England, there was scarcely an amount of order and protection to justify much national boasting. 
+
+ciphertext = Qv Mvotivl, bpmzm eia akizkmtg iv iuwcvb wn wzlmz ivl xzwbmkbqwv bw rcabqng uckp vibqwvit jwiabqvo. 
+Cryptanalysis results: key = 8
+plaintext2 = In England, there was scarcely an amount of order and protection to justify much national boasting. 
+
+End of Task 3: Shift Cipher Testing
+----------------------------------------
+
+----------------------------------------
+Start of Task 4: Vigenere Cryptanalysis Testing
+
+-------------- Testing Blocks to Baskets:
+blocks = ['CP4', '60 ', 'is ', 'my ', 'fav', 'ori', 'te ', 'cou', 'rse', ' in', ' Fa', 'll ', '202', '0']
+baskets= ['C6imfotcr  l20', 'P0syareosiFl0', '4   vi uena 2']
+
+blocks = ['CP46', '0 is', ' my ', 'favo', 'rite', ' cou', 'rse ', 'in F', 'all ', '2020']
+baskets= ['C0 fr ria2', 'P maicsnl0', '4iyvtoe l2', '6s oeu F 0']
+
+blocks = ['CP460', ' is m', 'y fav', 'orite', ' cour', 'se in', ' Fall', ' 2020']
+baskets= ['C yo s  ', 'Pi rceF2', '4sfio a0', '6 atuil2', '0mvernl0']
+
+-------------- Testing Freidman:
+ciphertext =
+IYMEC GOBDO JBSNT VAQLN BIEAO YIOHV XZYZY LEEVI PWOBB OEIVZ
+HWUDE AQALL KROCU WSWRY SIUYB MAEIR DEFYY LKODK OGIKP HPRDE
+JIPWL LWPHR KYMBM AKNGM RELYD PHRNP ZHBYJ DPMMW BXEYO ZJMYX
+NYJDQ WYMEO GPYBC XSXXY HLBEL LEPRD EGWXL EPMNO CMRTG QQOUP
+PEDPS LZOJA EYWNM KRFBL PGIMQ AYTSH MRCKT UMVST VDBOE UEEVR
+GJGGP IATDR ARABL PGIMQ DBCFW CDFAW UWPPM RGJGN OETGD MCHIM
+EXTBE ENBNI CKYPW NQBLP GIMQO ELICM RCLAC MV
+friedman = [6, 7]
+
+key = Afghanistan     len = 11 friedman = [10, 9]	Bad
+key = Albania         len =  7 friedman = [4, 3]	Bad
+key = Algeria         len =  7 friedman = [6, 5]	Bad
+key = Andorra         len =  7 friedman = [5, 4]	Bad
+key = Angola          len =  6 friedman = [5, 4]	Bad
+key = Argentina       len =  9 friedman = [6, 5]	Bad
+key = Armenia         len =  7 friedman = [5, 6]	Bad
+key = Australia       len =  9 friedman = [8, 7]	Bad
+key = Austria         len =  7 friedman = [9, 10]	Bad
+key = Azerbaijan      len = 10 friedman = [7, 6]	Bad
+key = Bahamas         len =  7 friedman = [4, 5]	Bad
+key = Bahrain         len =  7 friedman = [6, 7]	Good
+key = Bangladesh      len = 10 friedman = [10, 9]	Good
+key = Barbados        len =  8 friedman = [6, 7]	Bad
+key = Belarus         len =  7 friedman = [10, 11]	Bad
+key = Belgium         len =  7 friedman = [11, 10]	Bad
+key = Belize          len =  6 friedman = [7, 6]	Good
+key = Benin           len =  5 friedman = [5, 4]	Good
+key = Bhutan          len =  6 friedman = [7, 8]	Bad
+key = Bolivia         len =  7 friedman = [6, 7]	Good
+key = Bosnia          len =  6 friedman = [8, 7]	Bad
+key = Botswana        len =  8 friedman = [7, 8]	Good
+key = Brazil          len =  6 friedman = [10, 11]	Bad
+key = Brunei          len =  6 friedman = [7, 8]	Bad
+key = Bulgaria        len =  8 friedman = [9, 10]	Bad
+key = Burkina         len =  7 friedman = [10, 11]	Bad
+key = Burundi         len =  7 friedman = [8, 9]	Bad
+key = CapeVerde       len =  9 friedman = [4, 5]	Bad
+key = Cambodia        len =  8 friedman = [8, 9]	Good
+key = Cameroon        len =  8 friedman = [6, 7]	Bad
+key = Canada          len =  6 friedman = [3, 2]	Bad
+key = CentralAfrican  len = 14 friedman = [8, 7]	Bad
+key = Chad            len =  4 friedman = [5, 6]	Bad
+key = Chile           len =  5 friedman = [7, 6]	Bad
+key = China           len =  5 friedman = [6, 7]	Bad
+key = Colombia        len =  8 friedman = [7, 6]	Bad
+key = Comoros         len =  7 friedman = [4, 5]	Bad
+key = IvoryCost       len =  9 friedman = [10, 11]	Bad
+key = Croatia         len =  7 friedman = [9, 8]	Bad
+key = Cuba            len =  4 friedman = [5, 6]	Bad
+key = Cyprus          len =  6 friedman = [7, 6]	Good
+key = Czech           len =  5 friedman = [7, 8]	Bad
+key = Congo           len =  5 friedman = [4, 3]	Bad
+key = Denmark         len =  7 friedman = [9, 8]	Bad
+key = Djibouti        len =  8 friedman = [9, 8]	Good
+key = Dominica        len =  8 friedman = [8, 7]	Good
+key = Dominican       len =  9 friedman = [7, 8]	Bad
+key = Ecuador         len =  7 friedman = [9, 8]	Bad
+key = Egypt           len =  5 friedman = [5, 4]	Good
+key = ElSalvador      len = 10 friedman = [8, 9]	Bad
+key = Eritrea         len =  7 friedman = [3, 4]	Bad
+key = Estonia         len =  7 friedman = [7, 8]	Good
+key = Eswatini        len =  8 friedman = [7, 6]	Bad
+key = Ethiopia        len =  8 friedman = [6, 5]	Bad
+key = Fiji            len =  4 friedman = [3, 2]	Bad
+key = Finland         len =  7 friedman = [12, 11]	Bad
+key = France          len =  6 friedman = [5, 6]	Good
+key = Gabon           len =  5 friedman = [5, 6]	Good
+key = Gambia          len =  6 friedman = [6, 5]	Good
+key = Georgia         len =  7 friedman = [6, 5]	Bad
+key = Germany         len =  7 friedman = [7, 8]	Good
+key = Ghana           len =  5 friedman = [3, 4]	Bad
+key = Greece          len =  6 friedman = [3, 2]	Bad
+key = Grenada         len =  7 friedman = [5, 6]	Bad
+key = Guatemala       len =  9 friedman = [5, 6]	Bad
+key = Guinea          len =  6 friedman = [7, 6]	Good
+key = GuineaBissau    len = 12 friedman = [12, 13]	Good
+key = Guyana          len =  6 friedman = [4, 5]	Bad
+key = Haiti           len =  5 friedman = [3, 4]	Bad
+key = Honduras        len =  8 friedman = [8, 7]	Good
+key = Hungary         len =  7 friedman = [8, 7]	Good
+key = Iceland         len =  7 friedman = [9, 8]	Bad
+key = India           len =  5 friedman = [6, 7]	Bad
+key = Indonesia       len =  9 friedman = [8, 7]	Bad
+key = Iran            len =  4 friedman = [5, 4]	Good
+key = Iraq            len =  4 friedman = [6, 5]	Bad
+key = Tajikistan      len = 10 friedman = [9, 8]	Bad
+key = Thailand        len =  8 friedman = [7, 6]	Bad
+key = TimorLeste      len = 10 friedman = [7, 6]	Bad
+key = Togo            len =  4 friedman = [3, 4]	Good
+key = Tonga           len =  5 friedman = [5, 6]	Good
+key = Trinidad        len =  8 friedman = [8, 7]	Good
+key = Tunisia         len =  7 friedman = [8, 7]	Good
+key = Turkey          len =  6 friedman = [7, 6]	Good
+key = Turkmenistan    len = 12 friedman = [13, 14]	Bad
+key = Tuvalu          len =  6 friedman = [6, 5]	Good
+key = Uganda          len =  6 friedman = [5, 6]	Good
+key = Ukraine         len =  7 friedman = [9, 8]	Bad
+key = UAE             len =  3 friedman = [3, 2]	Good
+key = UK              len =  2 friedman = [2, 1]	Good
+key = Tanzania        len =  8 friedman = [4, 3]	Bad
+key = USA             len =  3 friedman = [4, 5]	Bad
+key = Uruguay         len =  7 friedman = [5, 4]	Bad
+key = Uzbekistan      len = 10 friedman = [21, 20]	Bad
+key = Vanuatu         len =  7 friedman = [5, 6]	Bad
+key = Venezuela       len =  9 friedman = [7, 6]	Bad
+key = Vietnam         len =  7 friedman = [7, 8]	Good
+key = Yemen           len =  5 friedman = [4, 5]	Good
+key = Zambia          len =  6 friedman = [5, 4]	Bad
+key = Zimbabwe        len =  8 friedman = [7, 8]	Good
+Found 33 out of 100 keys
+
+-------------- Testing Cipher Shifting:
+ciphertext =
+IYMEC GOBDO JBSNT VAQLN BIEAO YIOHV XZYZY LEEVI PWOBB OEIVZ
+HWUDE AQALL KROCU WSWRY SIUYB MAEIR DEFYY LKODK OGIKP HPRDE
+JIPWL LWPHR KYMBM AKNGM RELYD PHRNP ZHBYJ DPMMW BXEYO ZJMYX
+NYJDQ WYMEO GPYBC XSXXY HLBEL LEPRD EGWXL EPMNO CMRTG QQOUP
+PEDPS LZOJA EYWNM KRFBL PGIMQ AYTSH MRCKT UMVST VDBOE UEEVR
+GJGGP IATDR ARABL PGIMQ DBCFW CDFAW UWPPM RGJGN OETGD MCHIM
+EXTBE ENBNI CKYPW NQBLP GIMQO ELICM RCLAC MV
+cipher shifting = [1, 6]
+
+key = Afghanistan     len = 11 c_shifting = [11, 5]	Good
+key = Albania         len =  7 c_shifting = [4, 7]	Good
+key = Algeria         len =  7 c_shifting = [4, 7]	Good
+key = Andorra         len =  7 c_shifting = [4, 7]	Good
+key = Angola          len =  6 c_shifting = [7, 1]	Bad
+key = Argentina       len =  9 c_shifting = [9, 1]	Good
+key = Armenia         len =  7 c_shifting = [4, 7]	Good
+key = Australia       len =  9 c_shifting = [9, 1]	Good
+key = Austria         len =  7 c_shifting = [4, 7]	Good
+key = Azerbaijan      len = 10 c_shifting = [3, 10]	Good
+key = Bahamas         len =  7 c_shifting = [4, 7]	Good
+key = Bahrain         len =  7 c_shifting = [4, 7]	Good
+key = Bangladesh      len = 10 c_shifting = [3, 10]	Good
+key = Barbados        len =  8 c_shifting = [7, 16]	Bad
+key = Belarus         len =  7 c_shifting = [4, 7]	Good
+key = Belgium         len =  7 c_shifting = [4, 7]	Good
+key = Belize          len =  6 c_shifting = [7, 1]	Bad
+key = Benin           len =  5 c_shifting = [15, 8]	Bad
+key = Bhutan          len =  6 c_shifting = [7, 1]	Bad
+key = Bolivia         len =  7 c_shifting = [4, 7]	Good
+key = Bosnia          len =  6 c_shifting = [7, 1]	Bad
+key = Botswana        len =  8 c_shifting = [7, 16]	Bad
+key = Brazil          len =  6 c_shifting = [7, 1]	Bad
+key = Brunei          len =  6 c_shifting = [7, 1]	Bad
+key = Bulgaria        len =  8 c_shifting = [7, 16]	Bad
+key = Burkina         len =  7 c_shifting = [4, 7]	Good
+key = Burundi         len =  7 c_shifting = [4, 7]	Good
+key = CapeVerde       len =  9 c_shifting = [9, 1]	Good
+key = Cambodia        len =  8 c_shifting = [7, 16]	Bad
+key = Cameroon        len =  8 c_shifting = [7, 16]	Bad
+key = Canada          len =  6 c_shifting = [7, 1]	Bad
+key = CentralAfrican  len = 14 c_shifting = [14, 1]	Good
+key = Chad            len =  4 c_shifting = [7, 16]	Bad
+key = Chile           len =  5 c_shifting = [15, 8]	Bad
+key = China           len =  5 c_shifting = [15, 8]	Bad
+key = Colombia        len =  8 c_shifting = [7, 16]	Bad
+key = Comoros         len =  7 c_shifting = [4, 7]	Good
+key = IvoryCost       len =  9 c_shifting = [9, 1]	Good
+key = Croatia         len =  7 c_shifting = [4, 7]	Good
+key = Cuba            len =  4 c_shifting = [7, 16]	Bad
+key = Cyprus          len =  6 c_shifting = [7, 1]	Bad
+key = Czech           len =  5 c_shifting = [15, 8]	Bad
+key = Congo           len =  5 c_shifting = [15, 8]	Bad
+key = Denmark         len =  7 c_shifting = [4, 7]	Good
+key = Djibouti        len =  8 c_shifting = [7, 16]	Bad
+key = Dominica        len =  8 c_shifting = [7, 16]	Bad
+key = Dominican       len =  9 c_shifting = [9, 1]	Good
+key = Ecuador         len =  7 c_shifting = [4, 7]	Good
+key = Egypt           len =  5 c_shifting = [15, 8]	Bad
+key = ElSalvador      len = 10 c_shifting = [3, 10]	Good
+key = Eritrea         len =  7 c_shifting = [4, 7]	Good
+key = Estonia         len =  7 c_shifting = [4, 7]	Good
+key = Eswatini        len =  8 c_shifting = [7, 16]	Bad
+key = Ethiopia        len =  8 c_shifting = [7, 16]	Bad
+key = Fiji            len =  4 c_shifting = [7, 16]	Bad
+key = Finland         len =  7 c_shifting = [4, 7]	Good
+key = France          len =  6 c_shifting = [7, 1]	Bad
+key = Gabon           len =  5 c_shifting = [15, 8]	Bad
+key = Gambia          len =  6 c_shifting = [7, 1]	Bad
+key = Georgia         len =  7 c_shifting = [4, 7]	Good
+key = Germany         len =  7 c_shifting = [4, 7]	Good
+key = Ghana           len =  5 c_shifting = [15, 8]	Bad
+key = Greece          len =  6 c_shifting = [7, 1]	Bad
+key = Grenada         len =  7 c_shifting = [4, 7]	Good
+key = Guatemala       len =  9 c_shifting = [9, 1]	Good
+key = Guinea          len =  6 c_shifting = [7, 1]	Bad
+key = GuineaBissau    len = 12 c_shifting = [7, 12]	Good
+key = Guyana          len =  6 c_shifting = [7, 1]	Bad
+key = Haiti           len =  5 c_shifting = [15, 8]	Bad
+key = Honduras        len =  8 c_shifting = [7, 16]	Bad
+key = Hungary         len =  7 c_shifting = [4, 7]	Good
+key = Iceland         len =  7 c_shifting = [4, 7]	Good
+key = India           len =  5 c_shifting = [15, 8]	Bad
+key = Indonesia       len =  9 c_shifting = [9, 1]	Good
+key = Iran            len =  4 c_shifting = [7, 16]	Bad
+key = Iraq            len =  4 c_shifting = [7, 16]	Bad
+key = Tajikistan      len = 10 c_shifting = [3, 10]	Good
+key = Thailand        len =  8 c_shifting = [7, 16]	Bad
+key = TimorLeste      len = 10 c_shifting = [3, 10]	Good
+key = Togo            len =  4 c_shifting = [7, 16]	Bad
+key = Tonga           len =  5 c_shifting = [15, 8]	Bad
+key = Trinidad        len =  8 c_shifting = [7, 16]	Bad
+key = Tunisia         len =  7 c_shifting = [4, 7]	Good
+key = Turkey          len =  6 c_shifting = [7, 1]	Bad
+key = Turkmenistan    len = 12 c_shifting = [7, 12]	Good
+key = Tuvalu          len =  6 c_shifting = [7, 1]	Bad
+key = Uganda          len =  6 c_shifting = [7, 1]	Bad
+key = Ukraine         len =  7 c_shifting = [4, 7]	Good
+key = UAE             len =  3 c_shifting = [9, 7]	Bad
+key = UK              len =  2 c_shifting = [7, 16]	Bad
+key = Tanzania        len =  8 c_shifting = [7, 16]	Bad
+key = USA             len =  3 c_shifting = [9, 7]	Bad
+key = Uruguay         len =  7 c_shifting = [4, 7]	Good
+key = Uzbekistan      len = 10 c_shifting = [3, 10]	Good
+key = Vanuatu         len =  7 c_shifting = [4, 7]	Good
+key = Venezuela       len =  9 c_shifting = [9, 1]	Good
+key = Vietnam         len =  7 c_shifting = [4, 7]	Good
+key = Yemen           len =  5 c_shifting = [15, 8]	Bad
+key = Zambia          len =  6 c_shifting = [7, 1]	Bad
+key = Zimbabwe        len =  8 c_shifting = [7, 16]	Bad
+Found 47 out of 100 keys
+
+-------------- Testing Cryptanalysis of Key Length:
+key = Afghanistan     len = 11 keys = [10, 9, 11, 5] 	Good
+key = Albania         len =  7 keys = [4, 3, 7] 	Good
+key = Algeria         len =  7 keys = [6, 5, 4, 7] 	Good
+key = Andorra         len =  7 keys = [4, 5, 7] 	Good
+key = Angola          len =  6 keys = [5, 4, 7, 1] 	Bad
+key = Argentina       len =  9 keys = [6, 5, 9, 1] 	Good
+key = Armenia         len =  7 keys = [5, 6, 4, 7] 	Good
+key = Australia       len =  9 keys = [8, 7, 9, 1] 	Good
+key = Austria         len =  7 keys = [9, 10, 4, 7] 	Good
+key = Azerbaijan      len = 10 keys = [7, 6, 3, 10] 	Good
+key = Bahamas         len =  7 keys = [4, 5, 7] 	Good
+key = Bahrain         len =  7 keys = [7, 6, 4] 	Good
+key = Bangladesh      len = 10 keys = [10, 9, 3] 	Good
+key = Barbados        len =  8 keys = [7, 6, 16] 	Bad
+key = Belarus         len =  7 keys = [10, 11, 4, 7] 	Good
+key = Belgium         len =  7 keys = [11, 10, 4, 7] 	Good
+key = Belize          len =  6 keys = [7, 6, 1] 	Good
+key = Benin           len =  5 keys = [5, 4, 15, 8] 	Good
+key = Bhutan          len =  6 keys = [7, 8, 1] 	Bad
+key = Bolivia         len =  7 keys = [7, 6, 4] 	Good
+key = Bosnia          len =  6 keys = [7, 8, 1] 	Bad
+key = Botswana        len =  8 keys = [7, 8, 16] 	Good
+key = Brazil          len =  6 keys = [10, 11, 7, 1] 	Bad
+key = Brunei          len =  6 keys = [7, 8, 1] 	Bad
+key = Bulgaria        len =  8 keys = [9, 10, 7, 16] 	Bad
+key = Burkina         len =  7 keys = [10, 11, 4, 7] 	Good
+key = Burundi         len =  7 keys = [8, 9, 4, 7] 	Good
+key = CapeVerde       len =  9 keys = [4, 5, 9, 1] 	Good
+key = Cambodia        len =  8 keys = [8, 9, 7, 16] 	Good
+key = Cameroon        len =  8 keys = [7, 6, 16] 	Bad
+key = Canada          len =  6 keys = [3, 2, 7, 1] 	Bad
+key = CentralAfrican  len = 14 keys = [8, 7, 14, 1] 	Good
+key = Chad            len =  4 keys = [5, 6, 7, 16] 	Bad
+key = Chile           len =  5 keys = [7, 6, 15, 8] 	Bad
+key = China           len =  5 keys = [6, 7, 15, 8] 	Bad
+key = Colombia        len =  8 keys = [7, 6, 16] 	Bad
+key = Comoros         len =  7 keys = [4, 5, 7] 	Good
+key = IvoryCost       len =  9 keys = [10, 11, 9, 1] 	Good
+key = Croatia         len =  7 keys = [9, 8, 4, 7] 	Good
+key = Cuba            len =  4 keys = [5, 6, 7, 16] 	Bad
+key = Cyprus          len =  6 keys = [7, 6, 1] 	Good
+key = Czech           len =  5 keys = [8, 7, 15] 	Bad
+key = Congo           len =  5 keys = [4, 3, 15, 8] 	Bad
+key = Denmark         len =  7 keys = [9, 8, 4, 7] 	Good
+key = Djibouti        len =  8 keys = [9, 8, 7, 16] 	Good
+key = Dominica        len =  8 keys = [7, 8, 16] 	Good
+key = Dominican       len =  9 keys = [7, 8, 9, 1] 	Good
+key = Ecuador         len =  7 keys = [9, 8, 4, 7] 	Good
+key = Egypt           len =  5 keys = [5, 4, 15, 8] 	Good
+key = ElSalvador      len = 10 keys = [8, 9, 3, 10] 	Good
+key = Eritrea         len =  7 keys = [4, 3, 7] 	Good
+key = Estonia         len =  7 keys = [7, 8, 4] 	Good
+key = Eswatini        len =  8 keys = [7, 6, 16] 	Bad
+key = Ethiopia        len =  8 keys = [6, 5, 7, 16] 	Bad
+key = Fiji            len =  4 keys = [3, 2, 7, 16] 	Bad
+key = Finland         len =  7 keys = [12, 11, 4, 7] 	Good
+key = France          len =  6 keys = [5, 6, 7, 1] 	Good
+key = Gabon           len =  5 keys = [5, 6, 15, 8] 	Good
+key = Gambia          len =  6 keys = [6, 5, 7, 1] 	Good
+key = Georgia         len =  7 keys = [6, 5, 4, 7] 	Good
+key = Germany         len =  7 keys = [7, 8, 4] 	Good
+key = Ghana           len =  5 keys = [3, 4, 15, 8] 	Bad
+key = Greece          len =  6 keys = [3, 2, 7, 1] 	Bad
+key = Grenada         len =  7 keys = [5, 6, 4, 7] 	Good
+key = Guatemala       len =  9 keys = [5, 6, 9, 1] 	Good
+key = Guinea          len =  6 keys = [7, 6, 1] 	Good
+key = GuineaBissau    len = 12 keys = [12, 13, 7] 	Good
+key = Guyana          len =  6 keys = [4, 5, 7, 1] 	Bad
+key = Haiti           len =  5 keys = [3, 4, 15, 8] 	Bad
+key = Honduras        len =  8 keys = [7, 8, 16] 	Good
+key = Hungary         len =  7 keys = [7, 8, 4] 	Good
+key = Iceland         len =  7 keys = [9, 8, 4, 7] 	Good
+key = India           len =  5 keys = [6, 7, 15, 8] 	Bad
+key = Indonesia       len =  9 keys = [8, 7, 9, 1] 	Good
+key = Iran            len =  4 keys = [5, 4, 7, 16] 	Good
+key = Iraq            len =  4 keys = [6, 5, 7, 16] 	Bad
+key = Tajikistan      len = 10 keys = [9, 8, 3, 10] 	Good
+key = Thailand        len =  8 keys = [7, 6, 16] 	Bad
+key = TimorLeste      len = 10 keys = [7, 6, 3, 10] 	Good
+key = Togo            len =  4 keys = [3, 4, 7, 16] 	Good
+key = Tonga           len =  5 keys = [5, 6, 15, 8] 	Good
+key = Trinidad        len =  8 keys = [7, 8, 16] 	Good
+key = Tunisia         len =  7 keys = [7, 8, 4] 	Good
+key = Turkey          len =  6 keys = [7, 6, 1] 	Good
+key = Turkmenistan    len = 12 keys = [13, 14, 7, 12] 	Good
+key = Tuvalu          len =  6 keys = [6, 5, 7, 1] 	Good
+key = Uganda          len =  6 keys = [5, 6, 7, 1] 	Good
+key = Ukraine         len =  7 keys = [9, 8, 4, 7] 	Good
+key = UAE             len =  3 keys = [3, 2, 9, 7] 	Good
+key = UK              len =  2 keys = [2, 1, 7, 16] 	Good
+key = Tanzania        len =  8 keys = [4, 3, 7, 16] 	Bad
+key = USA             len =  3 keys = [4, 5, 9, 7] 	Bad
+key = Uruguay         len =  7 keys = [4, 5, 7] 	Good
+key = Uzbekistan      len = 10 keys = [21, 20, 3, 10] 	Good
+key = Vanuatu         len =  7 keys = [5, 6, 4, 7] 	Good
+key = Venezuela       len =  9 keys = [7, 6, 9, 1] 	Good
+key = Vietnam         len =  7 keys = [7, 8, 4] 	Good
+key = Yemen           len =  5 keys = [4, 5, 15, 8] 	Good
+key = Zambia          len =  6 keys = [5, 4, 7, 1] 	Bad
+key = Zimbabwe        len =  8 keys = [7, 8, 16] 	Good
+Found 71 out of 100 keys
+
+-------------- Testing Cryptanalysis:
+key = afghanistan	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = albania   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = algeria   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = andorra   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key = argentina 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = armenia   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = australia 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = austria   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = azerbaijan	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = bahamas   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = bahrain   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = bangladesh	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = barbadosbarbados	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = belarus   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = belgium   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = belize    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = benin     	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key = bolivia   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key = botswana  	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key =           	plaintext2 = 
+key = bulgariabulgaria	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = burkina   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = burundi   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = capeverde 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = cambodia  	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = camerooncameroon	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key = centralafrican	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = chadchadchadchad	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = chilechilechile	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = chinachinachina	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = colombiacolombia	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = comoros   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = ivorycost 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = croatia   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = cubacubacubacuba	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = cyprus    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = czechczechczech	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = congocongocongo	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = denmark   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = djibouti  	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = dominica  	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = dominican 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = ecuador   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = egypt     	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = elsalvador	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = eritrea   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = estonia   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = eswatinieswatini	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = ethiopiaethiopia	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = fijifijifijifiji	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = finland   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = france    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = gabon     	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = gambia    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = georgia   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = germany   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = ghanaghanaghana	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key = grenada   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = guatemala 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = guinea    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = guineabissau	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key = haitihaitihaiti	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = honduras  	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = hungary   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = iceland   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = indiaindiaindia	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = indonesia 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = iran      	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = iraqiraqiraqiraq	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = tajikistan	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = thailandthailand	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = timorleste	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = togo      	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = tonga     	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = trinidad  	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = tunisia   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = turkey    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = turkmenistan	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = tuvalu    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = uganda    	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = ukraine   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = uae       	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = uk        	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = tanzaniatanzania	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = usausausa 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = uruguay   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = uzbekistanuzbekistan	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = vanuatu   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = venezuela 	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = vietnam   	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key = yemen     	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+key =           	plaintext2 = 
+key = zimbabwe  	plaintext2 = in cryptography, the one-time pad (otp) is an encryption
+Found 91 out of 100 keys
+
+End of Task 4: Vigenere Cryptanalysis Testing
+----------------------------------------
+

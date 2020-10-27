@@ -27,7 +27,19 @@ Assert:       text1 and text2 are strings
 ----------------------------------------------------
 """
 def compare_texts(text1,text2):
-    # your solution here
+    
+    assert type(text1) == str
+    assert type(text2) == str
+
+    matches = 0
+    if len(text1)<len(text2):
+        for i in range(len(text1)):
+            if text1[i] == text2[i]:
+                matches += 1
+    else:
+        for j in range(len(text2)):
+            if text2[j] == text1[j]:
+                matches +=1
     return matches
 
 """

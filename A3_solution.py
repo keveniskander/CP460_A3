@@ -7,6 +7,8 @@ Assignment 3
 -----------------------------
 """
 
+import utilities
+
 MAX_KEY_L = 17
 CIPHER_SHIFT_FACTOR = 180
 
@@ -40,6 +42,7 @@ def compare_texts(text1,text2):
         for j in range(len(text2)):
             if text2[j] == text1[j]:
                 matches +=1
+
     return matches
 
 """
@@ -54,7 +57,31 @@ Assert:       text is a string
 ----------------------------------------------------
 """
 def get_freq(text,base = None):
-    # your solution here
+    
+    assert type(text) == str
+    
+    
+
+    if base == None:
+
+        alpha = utilities.get_base('lower')
+        count_list = [0] * len(alpha)
+
+        for i in range(len(text)):
+            for j in range(len(alpha)):
+                if text[i].upper() == alpha[j] or text[i].lower() == alpha[j]:
+                    count_list[j] += 1
+
+    else:
+
+        alpha = utilities.get_base(base)
+        count_list = [0] * len(alpha)
+
+        for i in range(len(text)):
+            for j in range(len(alpha)):
+                if text[i] == alpha[j]:
+                    count_list[j] += 1
+
     return count_list
 
 """

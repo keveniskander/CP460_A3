@@ -224,7 +224,39 @@ def _e_viginere_auto(plaintext,key):
 
 def _e_viginere_run(plaintext,key):
     
-    ciphertext = plaintext
+    ciphertext = ''
+    cipherstring = plaintext
+    key_string = ''
+    specials = utilities.get_base('special')
+    count = 0
+    i = 0
+
+    positions = utilities.get_positions(cipherstring, ' ' + specials)
+    cipherstring = utilities.clean_text(cipherstring, ' ' + specials)
+
+    while i < len(cipherstring):
+        key_string = key_string + key[count]
+        count+=1
+        if count == len(key):
+            count = 0
+        i += 1
+
+    # print(cipherstring, len(cipherstring))
+    # print(key_string, len(key_string))
+
+    v_square = _vigenere_square()
+    lower = utilities.get_base('lower')
+
+    for j in range(len(cipherstring)):
+        ri = v_square[0].find(cipherstring[j].lower())
+        ci = lower.find(key_string[j].lower())
+
+        if cipherstring[j].islower()==True:
+            ciphertext = ciphertext + v_square[ci][ri]
+        else:
+            ciphertext = ciphertext + v_square[ci][ri].upper()
+
+    ciphertext = utilities.insert_positions(ciphertext, positions)
 
     return ciphertext
 
@@ -236,6 +268,11 @@ def e_vigenere(plaintext,key):
     ciphertext = plaintext
     if len(key) == 1:
         ciphertext = _e_viginere_auto(ciphertext, key)
+    elif len(key) == 0:
+        print('Error(e_vigenere): invalid key')
+        return ''
+    else:
+        ciphertext = _e_viginere_run(ciphertext, key)
     return ciphertext
 
 """
@@ -285,12 +322,54 @@ def _d_viginere_auto(ciphertext,key):
     plaintext = utilities.insert_positions(plaintext, positions)
 
     return plaintext
+
+def _d_viginere_run(ciphertext,key):
+    
+    plaintext = ''
+    plainstring = ciphertext
+    key_string = ''
+    specials = utilities.get_base('special')
+    count = 0
+    i = 0
+
+    positions = utilities.get_positions(plainstring, ' ' + specials)
+    plainstring = utilities.clean_text(plainstring, ' ' + specials)
+    ciphertext = utilities.clean_text(ciphertext, ' ' + specials)
+
+    while i < len(plainstring):
+        key_string = key_string + key[count]
+        count+=1
+        if count == len(key):
+            count = 0
+        i += 1
+
+    v_square = _vigenere_square()
+    lower = utilities.get_base('lower')
+
+    for j in range(len(plainstring)):
+        ci = lower.find(key_string[j].lower())
+        ri = v_square[ci].find(ciphertext[j].lower())
+
+        if plainstring[j].islower()==True:
+            plaintext = plaintext + v_square[0][ri]
+        else:
+            plaintext = plaintext + v_square[0][ri].upper()
+
+    plaintext = utilities.insert_positions(plaintext, positions)
+
+    return plaintext
+
 def d_vigenere(ciphertext,key):
     
     assert type(ciphertext) == str
     
     if len(key) == 1:
         plaintext  = _d_viginere_auto(ciphertext, key)
+    elif len(key) == 0:
+        print('Error(d_vigenere): invalid key')
+        return ''
+    else:
+        plaintext = _d_viginere_run(ciphertext, key)
     return plaintext
 
 

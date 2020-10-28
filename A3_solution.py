@@ -415,10 +415,16 @@ def e_shift(plaintext,key):
     shifts = key[0]
 
     for i in range(len(plaintext)):
-        j = base.find(plaintext[i])
+        if key[1] == None and plaintext[i].isupper():
+            j = base.find(plaintext[i].lower())
+        else:
+            j = base.find(plaintext[i])
         if j!= -1:
             shifted = utilities.shift_string(base, shifts)
-            ciphertext = ciphertext + shifted[j]
+            if key[1] == None and plaintext[i].isupper():
+                ciphertext = ciphertext + shifted[j].upper()
+            else:
+                ciphertext = ciphertext + shifted[j]
         else:
             ciphertext = ciphertext + plaintext[i]
 
@@ -460,10 +466,16 @@ def d_shift(ciphertext,key):
     shifts = key[0]
 
     for i in range(len(ciphertext)):
-        j = base.find(ciphertext[i])
+        if key[1] == None and ciphertext[i].isupper():
+            j = base.find(ciphertext[i].lower())
+        else:
+            j = base.find(ciphertext[i])
         if j != -1:
             shifted = utilities.shift_string(base, shifts, direction='r')
-            plaintext = plaintext + shifted[j]
+            if key[1] == None and ciphertext[i].isupper():
+                plaintext = plaintext + shifted[j].upper()
+            else:
+                plaintext = plaintext + shifted[j]
         else:
             plaintext = plaintext + ciphertext[i]
 

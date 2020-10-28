@@ -395,7 +395,33 @@ Error:        if invalid key:
 ----------------------------------------------------
 """
 def e_shift(plaintext,key):
-    # your solution here
+    
+    assert type(plaintext) == str
+
+    ciphertext = ''
+
+    if type(key) != tuple:
+        print('Error(e_shift): invalid key')   
+        return ''
+
+    if key[1]==None:
+        base = utilities.get_base('lower')
+    elif len(key[1]) != 0:
+        base = key[1]
+    else:
+        print('Error(e_shift): invalid key')   
+        return ''
+
+    shifts = key[0]
+
+    for i in range(len(plaintext)):
+        j = base.find(plaintext[i])
+        if j!= -1:
+            shifted = utilities.shift_string(base, shifts)
+            ciphertext = ciphertext + shifted[j]
+        else:
+            ciphertext = ciphertext + plaintext[i]
+
     return ciphertext
 
 """
@@ -414,7 +440,33 @@ Error:        if invalid key:
 ----------------------------------------------------
 """
 def d_shift(ciphertext,key):
-    # your solution here
+    
+    assert type(ciphertext) == str
+
+    if type(key) != tuple:
+        print('Error(d_shift): invalid key')   
+        return ''
+
+    plaintext = ''
+
+    if key[1] == None:
+        base = utilities.get_base('lower')
+    elif len(key[1])!=0:
+        base = key[1]
+    else:
+        print('Error(d_shift): invalid key')
+        return ''
+
+    shifts = key[0]
+
+    for i in range(len(ciphertext)):
+        j = base.find(ciphertext[i])
+        if j != -1:
+            shifted = utilities.shift_string(base, shifts, direction='r')
+            plaintext = plaintext + shifted[j]
+        else:
+            plaintext = plaintext + ciphertext[i]
+
     return plaintext
 
 """

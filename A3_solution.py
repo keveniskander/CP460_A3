@@ -403,12 +403,11 @@ def e_shift(plaintext,key):
     if type(key) != tuple:
         print('Error(e_shift): invalid key')   
         return ''
-    if type(key[1] != int):
-        print('Error(e_shift): invalid key') 
-        return ''
-    
+
     if key[1]==None:
         base = utilities.get_base('lower')
+    elif len(key[1]) != 0:
+        base = key[1]
     else:
         print('Error(e_shift): invalid key')   
         return ''
@@ -453,14 +452,13 @@ def d_shift(ciphertext,key):
     if type(key) != tuple:
         print('Error(d_shift): invalid key')   
         return ''
-    if type(key[1]) != int:
-        print('Error(d_shift): invalid key')
-        return ''
 
     plaintext = ''
 
     if key[1] == None:
         base = utilities.get_base('lower')
+    elif len(key[1])!=0:
+        base = key[1]
     else:
         print('Error(d_shift): invalid key')
         return ''
@@ -495,7 +493,19 @@ Asserts:      ciphertext is a non-empty string
 ----------------------------------------------------
 """
 def cryptanalysis_shift(ciphertext,base_type = None):
-    # your solution here
+    assert type(ciphertext) == str
+    # assert len(ciphertext)!=0
+
+    chi_array = [[]for a in range(len(ciphertext))]
+
+    for i in range(len(ciphertext)):
+        plaintext = d_shift(ciphertext, [i,base_type])
+        chi_array[i][0] = i
+        chi_array[i][1] = plaintext
+        chi_array[i][2] = chi_squared(plaintext)
+    
+    print(chi_array)
+
     return key,plaintext
 
 """

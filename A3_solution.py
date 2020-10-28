@@ -403,11 +403,12 @@ def e_shift(plaintext,key):
     if type(key) != tuple:
         print('Error(e_shift): invalid key')   
         return ''
-
+    if type(key[1] != int):
+        print('Error(e_shift): invalid key') 
+        return ''
+    
     if key[1]==None:
         base = utilities.get_base('lower')
-    elif len(key[1]) != 0:
-        base = key[1]
     else:
         print('Error(e_shift): invalid key')   
         return ''
@@ -452,13 +453,14 @@ def d_shift(ciphertext,key):
     if type(key) != tuple:
         print('Error(d_shift): invalid key')   
         return ''
+    if type(key[1]) != int:
+        print('Error(d_shift): invalid key')
+        return ''
 
     plaintext = ''
 
     if key[1] == None:
         base = utilities.get_base('lower')
-    elif len(key[1])!=0:
-        base = key[1]
     else:
         print('Error(d_shift): invalid key')
         return ''

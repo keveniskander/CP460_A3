@@ -400,7 +400,7 @@ def e_shift(plaintext,key):
 
     ciphertext = ''
 
-    if type(key) != tuple:
+    if type(key) != tuple or type(key[0]) != int or  (type(key[1]) == str and len(key[1])<1) or (key[1]!=None and type(key[1]) != str):
         print('Error(e_shift): invalid key')   
         return ''
 
@@ -449,7 +449,7 @@ def d_shift(ciphertext,key):
     
     assert type(ciphertext) == str
 
-    if type(key) != tuple:
+    if type(key) != tuple or type(key[0]) != int or (type(key[1]) == str and len(key[1])<1) or (key[1]!=None and type(key[1]) != str):
         print('Error(d_shift): invalid key')   
         return ''
 
@@ -496,15 +496,26 @@ def cryptanalysis_shift(ciphertext,base_type = None):
     assert type(ciphertext) == str
     # assert len(ciphertext)!=0
 
-    chi_array = [[]for a in range(len(ciphertext))]
+    if base_type == None:
+        base = utilities.get_base('lower')
+    else:
+        base = utilities.get_base(base_type)
 
-    for i in range(len(ciphertext)):
-        plaintext = d_shift(ciphertext, [i,base_type])
-        chi_array[i][0] = i
-        chi_array[i][1] = plaintext
-        chi_array[i][2] = chi_squared(plaintext)
+    key_array = []
+    plaintext_array = []
+    chi_array = []
     
-    print(chi_array)
+
+    for i in range(len(base)):
+        plaintext = d_shift(ciphertext, (i, base_type))
+        key_array.append(i)
+        plaintext_array.append(plaintext)
+        chi_array.append(chi_squared(plaintext))
+    
+    # print(chi_array[0], plaintext_array[0], key_array[0])
+    min_index = chi_array.index(min(chi_array))
+    key = key_array[min_index]
+    plaintext = plaintext_array[min_index]
 
     return key,plaintext
 

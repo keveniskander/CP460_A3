@@ -195,11 +195,11 @@ def _e_viginere_auto(plaintext,key):
     ciphertext = ''
     cipherstring = plaintext
     key_string = cipherstring
-    specials = utilities.get_base('special')
-
-    positions = utilities.get_positions(cipherstring, ' ' + specials)
-    cipherstring = utilities.clean_text(cipherstring, ' ' + specials) 
-    key_string = utilities.clean_text(key_string, ' ' + specials)
+    specials = utilities.get_base('nonalpha')
+    
+    positions = utilities.get_positions(cipherstring, ' ' + specials + '\n')
+    cipherstring = utilities.clean_text(cipherstring, ' ' + specials + '\n') 
+    key_string = utilities.clean_text(key_string, ' ' + specials + '\n')
     key_string = key + key_string[0:]
 
     # print(cipherstring)
@@ -228,12 +228,12 @@ def _e_viginere_run(plaintext,key):
     ciphertext = ''
     cipherstring = plaintext
     key_string = ''
-    specials = utilities.get_base('special')
+    specials = utilities.get_base('nonalpha')
     count = 0
     i = 0
 
-    positions = utilities.get_positions(cipherstring, ' ' + specials)
-    cipherstring = utilities.clean_text(cipherstring, ' ' + specials)
+    positions = utilities.get_positions(cipherstring, ' ' + specials + '\n')
+    cipherstring = utilities.clean_text(cipherstring, ' ' + specials + '\n')
 
     while i < len(cipherstring):
         key_string = key_string + key[count]
@@ -295,11 +295,11 @@ def _d_viginere_auto(ciphertext,key):
     plaintext = ''
     plainstring = ciphertext
     key_string =  key
-    specials = utilities.get_base('special')
+    specials = utilities.get_base('nonalpha')
 
-    positions = utilities.get_positions(plainstring, ' ' + specials)
-    plainstring = utilities.clean_text(plainstring, ' ' + specials)
-    ciphertext = utilities.clean_text(ciphertext, ' ' + specials)
+    positions = utilities.get_positions(plainstring, ' ' + specials + '\n')
+    plainstring = utilities.clean_text(plainstring, ' ' + specials + '\n')
+    ciphertext = utilities.clean_text(ciphertext, ' ' + specials + '\n')
 
     v_square = _vigenere_square()
     lower = utilities.get_base('lower')
@@ -329,13 +329,13 @@ def _d_viginere_run(ciphertext,key):
     plaintext = ''
     plainstring = ciphertext
     key_string = ''
-    specials = utilities.get_base('special')
+    specials = utilities.get_base('nonalpha')
     count = 0
     i = 0
 
-    positions = utilities.get_positions(plainstring, ' ' + specials)
-    plainstring = utilities.clean_text(plainstring, ' ' + specials)
-    ciphertext = utilities.clean_text(ciphertext, ' ' + specials)
+    positions = utilities.get_positions(plainstring, ' ' + specials + '\n')
+    plainstring = utilities.clean_text(plainstring, ' ' + specials + '\n')
+    ciphertext = utilities.clean_text(ciphertext, ' ' + specials + '\n')
 
     while i < len(plainstring):
         key_string = key_string + key[count]
@@ -567,15 +567,15 @@ def friedman(ciphertext):
 
     coin_index = index_of_coin(ciphertext)
     sum_freq = sum(get_freq(ciphertext))
-    print(coin_index)
-    print(sum_freq)
+    # print(coin_index)
+    # print(sum_freq)
     # print(round(coin_index,4))
 
     knum = 0.0265*sum_freq
     kden = (0.065 - coin_index)+sum_freq*(coin_index-0.0385)
 
     k = knum/kden
-    print(k)
+    # print(k)
 
     k1 = math.floor(k)
     k2 = math.ceil(k) 

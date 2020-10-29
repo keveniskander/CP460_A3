@@ -8,6 +8,7 @@ Assignment 3
 """
 
 import utilities
+import math
 
 MAX_KEY_L = 17
 CIPHER_SHIFT_FACTOR = 180
@@ -539,6 +540,7 @@ def _blocks_to_baskets(blocks):
     max_block_size = max(blocks, key=len)
     baskets = ['' for a in range(len(max_block_size))]
     i = 0
+
     for j in range(len(blocks)):
         while i < len(blocks):
             # baskets[j] = baskets[j] + blocks[i][j]
@@ -563,8 +565,23 @@ def friedman(ciphertext):
     assert type(ciphertext) == str
     assert len(ciphertext)>0
 
-    
+    coin_index = index_of_coin(ciphertext)
+    sum_freq = sum(get_freq(ciphertext))
+    print(coin_index)
+    print(sum_freq)
+    # print(round(coin_index,4))
 
+    knum = 0.0265*sum_freq
+    kden = (0.065 - coin_index)+sum_freq*(coin_index-0.0385)
+
+    k = knum/kden
+    print(k)
+
+    k1 = math.floor(k)
+    k2 = math.ceil(k) 
+     
+    if k2-k<=0.5:
+        return [k2,k1]
     return [k1,k2]
 
 """

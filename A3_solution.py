@@ -535,7 +535,18 @@ Description:  Create k baskets, where k = key length = block size
 ----------------------------------------------------
 """
 def _blocks_to_baskets(blocks):
-    # your solution here
+
+    max_block_size = max(blocks, key=len)
+    baskets = ['' for a in range(len(max_block_size))]
+    i = 0
+    for j in range(len(blocks)):
+        while i < len(blocks):
+            # baskets[j] = baskets[j] + blocks[i][j]
+            if j < len(blocks[i]):
+                baskets[j] = baskets[j] + blocks[i][j]
+                # print(blocks[i][j])
+            i+=1
+        i = 0
     return baskets
 
 """
@@ -548,7 +559,12 @@ Asserts:      ciphertext is a non-empty string
 ----------------------------------------------------
 """
 def friedman(ciphertext):
-    # your solution here
+    
+    assert type(ciphertext) == str
+    assert len(ciphertext)>0
+
+    
+
     return [k1,k2]
 
 """

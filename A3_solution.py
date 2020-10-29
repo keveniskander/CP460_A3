@@ -11,7 +11,7 @@ import utilities
 import math
 
 MAX_KEY_L = 17
-CIPHER_SHIFT_FACTOR = 180
+CIPHER_SHIFT_FACTOR = 26
 
 
 """
@@ -595,7 +595,12 @@ Asserts:      ciphertext is a non-empty string
 ----------------------------------------------------
 """
 def cipher_shifting(ciphertext,max_key = MAX_KEY_L):
-    # your code here
+    
+    assert type(ciphertext) == str
+    assert len(ciphertext) > 0
+
+    
+
     return [k1,k2]
 
 """

@@ -599,7 +599,37 @@ def cipher_shifting(ciphertext,max_key = MAX_KEY_L):
     assert type(ciphertext) == str
     assert len(ciphertext) > 0
 
+    match_array = []
+    shifted_ciphertext = ciphertext
+    nonalpha = utilities.get_base('nonalpha')
+
+    # positions = utilities.get_positions(shifted_ciphertext, nonalpha + ' ' + '\n')
+    ciphertext = utilities.clean_text(ciphertext, nonalpha + ' ' + '\n')
+    shifted_ciphertext = utilities.clean_text(shifted_ciphertext, nonalpha + ' ' + '\n')
+    # print(shifted_ciphertext)
+
+
+    i = 1
+    while i < CIPHER_SHIFT_FACTOR:
+        # print(i)
+        shifted_ciphertext = ' ' + shifted_ciphertext[:-1]
+        # print(shifted_ciphertext)
+        matches = compare_texts(ciphertext, shifted_ciphertext)
+        match_array.append(matches)
+        i+=1
+
+    # print(match_array)
+    max_matches = max(match_array)
     
+    k1 = match_array.index(max_matches) + 1
+    # print(k1)
+    match_array[k1-1] = 0
+    k1 = k1%max_key
+    max_matches = max(match_array)
+    # print(match_array)
+    # print(match_array.index(max_matches))
+    k2 = match_array.index(max_matches) + 1
+    k2 = k2%max_key
 
     return [k1,k2]
 

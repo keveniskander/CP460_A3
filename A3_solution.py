@@ -665,6 +665,16 @@ def _cryptanalysis_vigenere_key_length(ciphertext):
         return [k2,k1,k4]
     elif k1==k4 and k1!=k2 and k3!=k4:
         return [k1,k2,k3]
+    elif k1==k2 and k2==k3 and k3!=k4:
+        return [k3,k4]
+    elif k1!=k2 and k2==k3 and k3==k4:
+        return [k1,k2]
+    elif k1==k2 and k2!=k3 and k3==k4:
+        return [k2,k3]
+    elif k1==k2 and k2==k3 and k3==k4 and k1!=k3:
+        return [k1,k3]
+    elif k1==k2 and k2==k3 and k3==k4 and k2!=k4:
+        return [k2,k4]
     
     return k_array
 
@@ -679,7 +689,14 @@ Asserts:      ciphertext is a non-empty string
 ----------------------------------------------------
 """
 def cryptanalysis_vigenere(ciphertext):
-    # your code here
+    
+    assert type(ciphertext) == str
+    assert len(ciphertext) > 0
+
+    keys = _cryptanalysis_vigenere_key_length(ciphertext)
+    for i in range(len(keys)):
+        
+
     return key,plaintext
 
 """----------------------------

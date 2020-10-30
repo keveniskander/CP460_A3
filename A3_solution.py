@@ -728,7 +728,7 @@ def cryptanalysis_vigenere(ciphertext):
             # print(word)
         possible_keys.append(word)
             
-    print(possible_keys)
+    # print(possible_keys)
 
     for a in range(len(possible_keys)):
         key = possible_keys[a]

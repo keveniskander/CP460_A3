@@ -141,78 +141,78 @@ def task3():
     return
 
 def task4():
-    # print('{}'.format('-'*40))
-    # print("Start of Task 4: Vigenere Cryptanalysis Testing")
-    # print()
+    print('{}'.format('-'*40))
+    print("Start of Task 4: Vigenere Cryptanalysis Testing")
+    print()
      
-    # print('-------------- Testing Blocks to Baskets:')
-    # text = 'CP460 is my favorite course in Fall 2020'
-    # sizes = [3,4,5]
-    # for size in sizes:
-    #     blocks = utilities.text_to_blocks(text,size)
-    #     print('blocks = {}'.format(blocks))
-    #     baskets = A3_solution._blocks_to_baskets(blocks)
-    #     print('baskets= {}'.format(baskets))
-    #     print()
+    print('-------------- Testing Blocks to Baskets:')
+    text = 'CP460 is my favorite course in Fall 2020'
+    sizes = [3,4,5]
+    for size in sizes:
+        blocks = utilities.text_to_blocks(text,size)
+        print('blocks = {}'.format(blocks))
+        baskets = A3_solution._blocks_to_baskets(blocks)
+        print('baskets= {}'.format(baskets))
+        print()
           
-    # print('-------------- Testing Freidman:')
+    print('-------------- Testing Freidman:')
  
-    # ciphertext = utilities.file_to_text('ciphertext2.txt')
-    # print('ciphertext =')
-    # print(ciphertext)
-    # friedman = A3_solution.friedman(ciphertext)
-    # print('friedman = {}'.format(friedman))
-    # print()
+    ciphertext = utilities.file_to_text('ciphertext2.txt')
+    print('ciphertext =')
+    print(ciphertext)
+    friedman = A3_solution.friedman(ciphertext)
+    print('friedman = {}'.format(friedman))
+    print()
     
     countries = utilities.file_to_text('countries.txt').split('\n') 
-    # counter = 0
+    counter = 0
     plaintext = utilities.file_to_text('plaintext4.txt')
-    # for key in countries:
-    #     ciphertext = A3_solution.e_vigenere(plaintext,key)
-    #     friedman = A3_solution.friedman(ciphertext)
-    #     print('key = {:15s} len = {:2d} friedman = {}'.format(key,len(key),friedman),end='\t')
-    #     if len(key) in friedman:
-    #         print('Good')
-    #         counter += 1
-    #     else:
-    #         print('Bad')
-    # print('Found {} out of {} keys'.format(counter,len(countries)))  
-    # print()
+    for key in countries:
+        ciphertext = A3_solution.e_vigenere(plaintext,key)
+        friedman = A3_solution.friedman(ciphertext)
+        print('key = {:15s} len = {:2d} friedman = {}'.format(key,len(key),friedman),end='\t')
+        if len(key) in friedman:
+            print('Good')
+            counter += 1
+        else:
+            print('Bad')
+    print('Found {} out of {} keys'.format(counter,len(countries)))  
+    print()
       
-    # print('-------------- Testing Cipher Shifting:')
-    # ciphertext = utilities.file_to_text('ciphertext2.txt')
-    # print('ciphertext =')
-    # print(ciphertext)
-    # cipher_shifting = A3_solution.cipher_shifting(ciphertext)
-    # print('cipher shifting = {}'.format(cipher_shifting))
-    # print()
+    print('-------------- Testing Cipher Shifting:')
+    ciphertext = utilities.file_to_text('ciphertext2.txt')
+    print('ciphertext =')
+    print(ciphertext)
+    cipher_shifting = A3_solution.cipher_shifting(ciphertext)
+    print('cipher shifting = {}'.format(cipher_shifting))
+    print()
     
-    # counter = 0
-    # for key in countries:
-    #     ciphertext = A3_solution.e_vigenere(plaintext,key)
-    #     cipher_shifting = A3_solution.cipher_shifting(ciphertext)
-    #     print('key = {:15s} len = {:2d} c_shifting = {}'.format(key,len(key),cipher_shifting),end='\t')
-    #     if len(key) in cipher_shifting:
-    #         print('Good')
-    #         counter+=1
-    #     else:
-    #         print('Bad')
-    # print('Found {} out of {} keys'.format(counter,len(countries)))  
-    # print()
+    counter = 0
+    for key in countries:
+        ciphertext = A3_solution.e_vigenere(plaintext,key)
+        cipher_shifting = A3_solution.cipher_shifting(ciphertext)
+        print('key = {:15s} len = {:2d} c_shifting = {}'.format(key,len(key),cipher_shifting),end='\t')
+        if len(key) in cipher_shifting:
+            print('Good')
+            counter+=1
+        else:
+            print('Bad')
+    print('Found {} out of {} keys'.format(counter,len(countries)))  
+    print()
      
-    # print('-------------- Testing Cryptanalysis of Key Length:')
-    # counter = 0
-    # for key in countries:
-    #     ciphertext = A3_solution.e_vigenere(plaintext,key)
-    #     keys = A3_solution._cryptanalysis_vigenere_key_length(ciphertext)
-    #     print('key = {:15s} len = {:2d} keys = {} '.format(key,len(key),keys),end='\t')
-    #     if len(key) in keys:
-    #         print('Good')
-    #         counter+=1
-    #     else:
-    #         print('Bad')
-    # print('Found {} out of {} keys'.format(counter,len(countries)))  
-    # print()
+    print('-------------- Testing Cryptanalysis of Key Length:')
+    counter = 0
+    for key in countries:
+        ciphertext = A3_solution.e_vigenere(plaintext,key)
+        keys = A3_solution._cryptanalysis_vigenere_key_length(ciphertext)
+        print('key = {:15s} len = {:2d} keys = {} '.format(key,len(key),keys),end='\t')
+        if len(key) in keys:
+            print('Good')
+            counter+=1
+        else:
+            print('Bad')
+    print('Found {} out of {} keys'.format(counter,len(countries)))  
+    print()
     
     print('-------------- Testing Cryptanalysis:')
     count = 0
@@ -231,7 +231,7 @@ def task4():
     print()
     return
 
-# task1()
-# task2()
-# task3()
+task1()
+task2()
+task3()
 task4()

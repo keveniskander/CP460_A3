@@ -693,11 +693,51 @@ def cryptanalysis_vigenere(ciphertext):
     assert type(ciphertext) == str
     assert len(ciphertext) > 0
 
+    dict_list = utilities.load_dictionary(dict_file=utilities.DICT_FILE)
     keys = _cryptanalysis_vigenere_key_length(ciphertext)
-    for i in range(len(keys)):
-        
+    print(keys)
+    possible_keys = []
+    key = ''
 
-    return key,plaintext
+
+    lower = utilities.get_base('lower')
+    nonalpha = utilities.get_base('nonalpha')
+    positions = utilities.get_positions(ciphertext, ' ' + nonalpha + '\n')
+    ciphertext = utilities.clean_text(ciphertext, ' ' + nonalpha + '\n')
+
+    for i in range(len(keys)):
+
+        cipher_blocks = utilities.text_to_blocks(ciphertext, keys[i])
+        cipher_baskets = _blocks_to_baskets(cipher_blocks)
+        # print(cipher_baskets)
+        
+        word = ''
+        for j in range(len(cipher_baskets)):
+            basket_chi = []
+            
+            k = 0
+            while k < CIPHER_SHIFT_FACTOR:
+                shifted_basket = d_shift(cipher_baskets[j], (k, None))
+                # print(shifted_basket)
+                basket_chi.append(chi_squared(shifted_basket))
+                k+=1
+            min_index = basket_chi.index(min(basket_chi))
+            # print(basket_chi)
+            # print(min_index)
+            word = word + lower[min_index]
+            # print(word)
+        possible_keys.append(word)
+            
+    print(possible_keys)
+
+    for a in range(len(possible_keys)):
+        key = possible_keys[a]
+        plaintext = d_vigenere(ciphertext, key)
+        plaintext = utilities.insert_positions(plaintext, positions)
+        if utilities.is_plaintext(plaintext, dict_list)==True:
+            return key, plaintext
+    
+    return '',''
 
 """----------------------------
 Columnar Transposition Cipher

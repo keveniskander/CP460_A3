@@ -643,8 +643,30 @@ Asserts:      ciphertext is a non-empty string
 ----------------------------------------------------
 """
 def _cryptanalysis_vigenere_key_length(ciphertext):
-    # your code here
-    return [k1,k2]
+    
+    assert type(ciphertext) == str
+    assert len(ciphertext) > 0
+
+    fried = friedman(ciphertext)
+    shift = cipher_shifting(ciphertext)
+
+    # print(fried, shift)
+    k1 = fried[0]
+    k2 = fried[1]
+    k3 = shift[0]
+    k4 = shift[1]
+    k_array = [k1,k2,k3,k4]
+
+    if k1==k3 and k2!=k4 and k1!=k4:
+        return [k1,k2,k4]
+    elif k1!=k3 and k2==k4 and k1!=k4:
+        return [k2,k1,k3]
+    elif k1!=k3 and k2==k3 and k3!=k4:
+        return [k2,k1,k4]
+    elif k1==k4 and k1!=k2 and k3!=k4:
+        return [k1,k2,k3]
+    
+    return k_array
 
 """
 ----------------------------------------------------
